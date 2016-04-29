@@ -243,7 +243,7 @@ class Complex:
 		# self.graph.layout_fruchterman_reingold(self.weights, maxiter, maxdelta, area, coolexp, repulserad,minx, maxx, miny, maxy, 0, 0, seed, self.dim)
 		# self.complex.embed(self.graph)
 		layout = self.graph.layout_fruchterman_reingold()
-		igraph.plot(self.graph, layout = layout)
+		igraph.plot(self.graph, "mapper.png", layout = layout)
 
 
 # class Drawing:

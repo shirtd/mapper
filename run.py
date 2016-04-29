@@ -56,7 +56,8 @@ class Mapper:
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding()
-
+		print domain.min
+		print domain.max
 # --------------------------------------- #
 
 def load_data(file_name):
@@ -146,5 +147,10 @@ data.rows = []
 data.cols = []
 data.samples = []
 data.domain = Domain(data)
+
+q = input('q: ')
+k = input('k: ')
+l = input('l: ')
+p = input('p: ')
 
 mapper = Mapper(data, q, k, l, p, l*p)
