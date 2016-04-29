@@ -58,7 +58,6 @@ class Mapper:
 				for c in s.clusters:
 					for t in s.clusters:
 						if ((c != t) & (c != None) & (t != None)):
-							print str(c.i)+", "+str(t.i)
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)

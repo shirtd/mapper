@@ -119,17 +119,17 @@ class Clustering:
 			if cur.min_d < best_d:
 				self.best = cur
 				best_d = cur.min_d
-				print "	       > NEW BEST: clusters %d and %d with %f" % (cur.i, cur.closest.i, best_d)
-			print "		best: cluster[%d].min_d = %f" % (self.best.i, self.best.min_d)
-			print "			cluster[%d].min_d = %f" % (i, cur.min_d) 
+			# 	print "	       > NEW BEST: clusters %d and %d with %f" % (cur.i, cur.closest.i, best_d)
+			# print "		best: cluster[%d].min_d = %f" % (self.best.i, self.best.min_d)
+			# print "			cluster[%d].min_d = %f" % (i, cur.min_d) 
 		if self.best.i != min([ self.best.i, self.best.closest.i]):
 			self.best = self.best.closest
 		i = self.best.i
 		j = self.best.closest.i
-		print "	best pair: clusters %d and %d a distance %f (%f) apart" % (i, j, self.best.min_d, self.best.closest.min_d)
-		print "		sanity check... D[%d][%d] = %f, D[%d][%d] = %f" % (i, j, self.D[i][j], j, i, self.D[j][i])
-		print "			cluster %d is closest to cluster %d; cluster %d is closest to cluster %d" % (self.best.i, self.best.closest.i, self.best.closest.i, self.best.closest.closest.i)
-		print
+		# print "	best pair: clusters %d and %d a distance %f (%f) apart" % (i, j, self.best.min_d, self.best.closest.min_d)
+		# print "		sanity check... D[%d][%d] = %f, D[%d][%d] = %f" % (i, j, self.D[i][j], j, i, self.D[j][i])
+		# print "			cluster %d is closest to cluster %d; cluster %d is closest to cluster %d" % (self.best.i, self.best.closest.i, self.best.closest.i, self.best.closest.closest.i)
+		# print
 	def update(self):
 		min_i = self.best.i
 		max_i = self.best.closest.i
