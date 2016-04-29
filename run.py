@@ -11,13 +11,13 @@ class Mapper:
 		self.f = Filter(q, k)
 		self.data = data
 		# self.data = Data(file_name)
-		domain = self.data.domain
-		self.f.image(domain)
-		domain.bounds()
-		print "	range: [%f, %f]" % (domain.min, domain.max)
+		self.domain = self.data.domain
+		self.f.image(self.domain)
+		self.domain.bounds()
+		print "	range: [%f, %f]" % (self.domain.min, self.domain.max)
 
 		self.cover = Cover(l, p)
-		self.cover.build(domain.min, domain.max)
+		self.cover.build(self.domain.min, self.domain.max)
 
 		print
 		sys.stdout.write("cover:")
@@ -26,7 +26,7 @@ class Mapper:
 			print "[ %f, %f ]" % (self.cover.coverset[t].a, self.cover.coverset[t].b)
 		print
 
-		self.cover.levelsets(domain)
+		self.cover.levelsets(self.domain)
 		for t in range(0, len(self.cover.coverset)):
 			print "	coverset %d has %d samples" % (t, len(self.cover.coverset[t].samples))
 		print
@@ -45,19 +45,25 @@ class Mapper:
 		print "  ------------------------------------------------------ "
 		print
 
-		print "%d samples total" % len(domain.samples)
+		print "%d samples total" % len(self.domain.samples)
+		print "file: " + file_out
+		print "q: %d" % q
+		print "k: %d" % k 
+		print "l: %f" % l
+		print "p: %f" % p
+		
 		print
-
-		for s in domain.samples:
+		for s in self.domain.samples:
 			if len(s.clusters) > 1:
 				for c in s.clusters:
 					for t in s.clusters:
-						if c != t:
+						if ((c != t) & (c != None) & (t != None)):
+							print str(c.i)+", "+str(t.i)
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)
-		print domain.min
-		print domain.max
+		print self.domain.min
+		print self.domain.max
 # --------------------------------------- #
 
 def load_data(file_name):
@@ -155,17 +161,18 @@ l_min = input('l_min: ')
 l_max = input('l_max: ')
 l_d = input('l_d: ')
 count = 0;
-
+#mapper = Mapper(data, q, k, (l_max-l_min/2), p, l*p, "mapper.png")
 while l_min + l_d*count <= l_max:
 	file_out = "images/image"
-	if count < 10000:
+	if count+1 < 10000:
 		file_out = file_out + "0"
-		if count < 1000:
+		if count+1 < 1000:
 			file_out = file_out + "0"
-			if count < 100:
+			if count+1 < 100:
 				file_out = file_out + "0"
-				if count < 10:
+				if count+1 < 10:
 					file_out = file_out + "0"
 	file_out = file_out + str(count+1) + ".png"
-	mapper = Mapper(data, q, k, l, p, l*p, file_out)
+	print file_out
+	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
 	count = count + 1
