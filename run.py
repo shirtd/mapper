@@ -6,9 +6,11 @@ from math import *
 from numpy import *
 
 class Mapper:
-	def __init__(self, file_name, q, k, l, p, ll):
+	# def __init__(self, file_name, q, k, l, p, ll):
+	def __init__(self, data, q, k, l, p, ll):
 		self.f = Filter(q, k)
-		self.data = Data(file_name)
+		self.data = data
+		# self.data = Data(file_name)
 		domain = self.data.domain
 		self.f.image(domain)
 		domain.bounds()
@@ -55,11 +57,56 @@ class Mapper:
 
 		self.complex.spring_embedding()
 
+# --------------------------------------- #
+
+def load_data(file_name):
+	file = open(file_name)
+	data = []
+	with file as f:
+		i = 0
+		for line in f:
+			data.append([])
+			string = line.split()
+			j = 0
+			for x in string:
+				data[i].append(float(x))
+			i = i + 1
+	return data
+
+def normalize_healthy(normal, tumor):
+	normal_mat = matrix(normal)
+	tumor_mat = matrix(tumor)
+	normal_T = normal_mat.T.tolist()
+	tumor_mat_T = tumor_mat.T
+	i = 0
+	for col in normal_T:
+		summ = 0
+		for x in col:
+			summ = summ + x
+		tumor_mat_T[i] = tumor_mat_T[i] - (summ/len(col))
+		i = i + 1
+	return tumor_mat_T.T.tolist()
+
+def scale_col(data, scale):
+	data_mat_T = matrix(data).T
+	i = 0
+	for col in data_mat_T.tolist():
+		maxx = float("-inf")
+		for x in col:
+			if x > maxx:
+				maxx = x
+		data_mat_T[i] = ((data_mat_T[i]/maxx)*2 - 1) * scale
+		i = i + 1
+	return data_mat_T.T.tolist()
 
 # --------------------------------------- #
 
 print # data import
-file_name = "data/TCGA-BRCA-L3-S35.txt"
+file_name = "data_new/protein/tumor/all_protein_tumor.txt"
+tumor_data = "data_new/protein/all_tumor_protein.txt"
+normal_data = "data_new/protein/all_normal_protein.txt"
+# file_name = "data_new/protein/normal/all_protein_normal.txt"
+# file_name = "data/TCGA-BRCA-L3-S35.txt"
 # file_name = "data/test.txt"
 # print "importing data file " + file_name +"..."
 # data = Data(file_name)
@@ -80,4 +127,24 @@ p = 1/7.	# cover-set interval percent overlap
 
 # ---------------------------------------------- #
 
-mapper = Mapper(file_name, q, k, l, p, l*p)
+# mapper = Mapper(file_name, q, k, l, p, l*p)
+
+tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
+
+tumor_mat = load_data(tumor_data)
+normal_mat = load_data(normal_data)
+tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
+# tumor_mat_norm_1 = scale_col(tumor_mat_norm, 1)
+savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
+
+data = Data(None)
+data.n = len(tumor_mat_norm)
+data.m = len(tumor_mat_norm[0])
+data.matrix = []
+data.data = tumor_mat_norm
+data.rows = []
+data.cols = []
+data.samples = []
+data.domain = Domain(data)
+
+mapper = Mapper(data, q, k, l, p, l*p)

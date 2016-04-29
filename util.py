@@ -46,17 +46,18 @@ def correlation_dist(x, y):
 
 class Data:
 	def __init__(self, file_name):
-		self.file_name = file_name
-		self.file = open(file_name)
-		self.n = None
-		self.m = None
-		self.matrix = []
-		self.data = []
-		self.rows = []
-		self.cols = []
-		self.samples = []
-		self.domain = None
-		self.process(self.file)
+		if file_name != None:
+			self.file_name = file_name
+			self.file = open(file_name)
+			self.n = None
+			self.m = None
+			self.matrix = []
+			self.data = []
+			self.rows = []
+			self.cols = []
+			self.samples = []
+			self.domain = None
+			self.process(self.file)
 	def process(self, file):
 		i = 0
 		with file as f:
@@ -83,12 +84,14 @@ class Data:
 		self.m = len(self.cols)
 		self.n = len(self.rows)
 		self.domain = Domain(self)
+
 class Domain:
 	def __init__(self, data):
 		self.samples = []
 		i = 0
 		for v in data.data:
-			s = Sample(v, data.rows[i])
+			# s = Sample(v, data.rows[i])
+			s = Sample(v, "")
 			self.samples.append(s)
 			i = i + 1
 		self.min = None
