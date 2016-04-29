@@ -7,7 +7,7 @@ from numpy import *
 
 class Mapper:
 	# def __init__(self, file_name, q, k, l, p, ll):
-	def __init__(self, data, q, k, l, p, ll):
+	def __init__(self, data, q, k, l, p, ll, file_out):
 		self.f = Filter(q, k)
 		self.data = data
 		# self.data = Data(file_name)
@@ -55,7 +55,7 @@ class Mapper:
 						if c != t:
 							self.complex.newEdge(c.vertex, t.vertex)
 
-		self.complex.spring_embedding()
+		self.complex.spring_embedding(file_out)
 		print domain.min
 		print domain.max
 # --------------------------------------- #
@@ -150,7 +150,22 @@ data.domain = Domain(data)
 
 q = input('q: ')
 k = input('k: ')
-l = input('l: ')
 p = input('p: ')
+l_min = input('l_min: ')
+l_max = input('l_max: ')
+l_d = input('l_d: ')
+count = 0;
 
-mapper = Mapper(data, q, k, l, p, l*p)
+while l_min + l_d*count <= l_max:
+	file_out = "images/image"
+	if count < 10000:
+		file_out = file_out + "0"
+		if count < 1000:
+			file_out = file_out + "0"
+			if count < 100:
+				file_out = file_out + "0"
+				if count < 10:
+					file_out = file_out + "0"
+	file_out = file_out + str(count+1) + ".png"
+	mapper = Mapper(data, q, k, l, p, l*p, file_out)
+	count = count + 1

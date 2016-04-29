@@ -228,7 +228,7 @@ class Complex:
 				self.m = self.m + 1
 			return e
 		else: return None
-	def spring_embedding(self):
+	def spring_embedding(self, file_name):
 		minx = 0
 		maxx = self.width
 		miny = 0
@@ -243,7 +243,7 @@ class Complex:
 		# self.graph.layout_fruchterman_reingold(self.weights, maxiter, maxdelta, area, coolexp, repulserad,minx, maxx, miny, maxy, 0, 0, seed, self.dim)
 		# self.complex.embed(self.graph)
 		layout = self.graph.layout_fruchterman_reingold()
-		igraph.plot(self.graph, "mapper.png", layout = layout)
+		igraph.plot(self.graph, file_name, layout = layout)
 
 
 # class Drawing:
