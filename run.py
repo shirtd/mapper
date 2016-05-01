@@ -27,23 +27,23 @@ class Mapper:
 		print
 
 		self.cover.levelsets(self.domain)
-		for t in range(0, len(self.cover.coverset)):
-			print "	coverset %d has %d samples" % (t, len(self.cover.coverset[t].samples))
-		print
+		# for t in range(0, len(self.cover.coverset)):
+		# 	print "	coverset %d has %d samples" % (t, len(self.cover.coverset[t].samples))
+		# print
 
 		self.complex = Complex(self.cover)
 		self.complex.cluster()
-		print "  ------------------------------------------------------ "
-		for c in self.complex .cover.coverset:
-			samples = c.samples
-			clusters = c.clustering.clusters
-			print
-			print "coverset [%f, %f] has %d samples and %d clusters" % (c.a, c.b, len(samples), len(clusters))
-			for i in range(0,len(clusters)):
-				print "	cluster %d has %d samples" % (i, len(clusters[i].samples))
-		print
-		print "  ------------------------------------------------------ "
-		print
+		# print "  ------------------------------------------------------ "
+		# for c in self.complex .cover.coverset:
+		# 	samples = c.samples
+		# 	clusters = c.clustering.clusters
+		# 	print
+		# 	print "coverset [%f, %f] has %d samples and %d clusters" % (c.a, c.b, len(samples), len(clusters))
+		# 	for i in range(0,len(clusters)):
+		# 		print "	cluster %d has %d samples" % (i, len(clusters[i].samples))
+		# print
+		# print "  ------------------------------------------------------ "
+		# print
 
 		print "%d samples total" % len(self.domain.samples)
 		print "file: " + file_out

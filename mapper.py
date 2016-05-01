@@ -82,13 +82,13 @@ class Levelset:
 						self.D[j][i] = self.D[i][j]
 	def cluster(self):
 		print
-		print "CLUSTERING LEVELSET WITH %d SAMPLES" % len(self.samples)		
-		# if len(self.samples) > 1:
-		print "computing distance matrix..."
+		# print "CLUSTERING LEVELSET WITH %d SAMPLES" % len(self.samples)		
+		# # if len(self.samples) > 1:
+		# print "computing distance matrix..."
 		self.distance_mat()
 		print matrix(self.D)
 		print
-		print "clustering... "
+		# print "clustering... "
 		self.clustering = Clustering(self)
 		return self.clustering
 
