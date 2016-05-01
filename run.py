@@ -6,11 +6,11 @@ from math import *
 from numpy import *
 
 class Mapper:
-	# def __init__(self, file_name, q, k, l, p, ll):
-	def __init__(self, data, q, k, l, p, ll, file_out):
+	def __init__(self, file_name, q, k, l, p, ll, file_out):
+	# def __init__(self, data, q, k, l, p, ll, file_out):
 		self.f = Filter(q, k)
-		self.data = data
-		# self.data = Data(file_name)
+		# self.data = data
+		self.data = Data(file_name)
 		self.domain = self.data.domain
 		self.f.image(self.domain)
 		self.domain.bounds()
@@ -108,11 +108,11 @@ def scale_col(data, scale):
 # --------------------------------------- #
 
 print # data import
-file_name = "data_new/protein/tumor/all_protein_tumor.txt"
-tumor_data = "data_new/protein/all_tumor_protein.txt"
-normal_data = "data_new/protein/all_normal_protein.txt"
+# file_name = "data_new/protein/tumor/all_protein_tumor.txt"
+# tumor_data = "data_new/protein/all_tumor_protein.txt"
+# normal_data = "data_new/protein/all_normal_protein.txt"
 # file_name = "data_new/protein/normal/all_protein_normal.txt"
-# file_name = "data/TCGA-BRCA-L3-S35.txt"
+file_name = "data/TCGA-BRCA-L3-S35.txt"
 # file_name = "data/test.txt"
 # print "importing data file " + file_name +"..."
 # data = Data(file_name)
@@ -140,7 +140,6 @@ tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
 tumor_mat = load_data(tumor_data)
 normal_mat = load_data(normal_data)
 tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
-# tumor_mat_norm_1 = scale_col(tumor_mat_norm, 1)
 savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
 data = Data(None)

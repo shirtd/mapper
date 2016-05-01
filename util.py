@@ -218,7 +218,7 @@ class Complex:
 		if u != v:
 			e = self.edge_mat[u.i][v.i]
 			if e == None:
-				print " linking vertices %d and %d" % (u.i, v.i)
+				# print " linking vertices %d and %d" % (u.i, v.i)
 				e = Edge(u,v)
 				self.edges.append(e)
 				self.edge_mat[u.i][v.i] = e
