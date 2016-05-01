@@ -6,11 +6,11 @@ from math import *
 from numpy import *
 
 class Mapper:
-	def __init__(self, file_name, q, k, l, p, ll, file_out):
-	# def __init__(self, data, q, k, l, p, ll, file_out):
+	# def __init__(self, file_name, q, k, l, p, ll, file_out):
+	def __init__(self, data, q, k, l, p, ll, file_out):
 		self.f = Filter(q, k)
-		# self.data = data
-		self.data = Data(file_name)
+		self.data = data
+		# self.data = Data(file_name)
 		self.domain = self.data.domain
 		self.f.image(self.domain)
 		self.domain.bounds()
@@ -135,22 +135,23 @@ p = 1/7.	# cover-set interval percent overlap
 
 # mapper = Mapper(file_name, q, k, l, p, l*p)
 
-tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
+# tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
 
-tumor_mat = load_data(tumor_data)
-normal_mat = load_data(normal_data)
-tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
-savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
+# tumor_mat = load_data(tumor_data)
+# normal_mat = load_data(normal_data)
+# tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
+# savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
-data = Data(None)
-data.n = len(tumor_mat_norm)
-data.m = len(tumor_mat_norm[0])
-data.matrix = []
-data.data = tumor_mat_norm
-data.rows = []
-data.cols = []
-data.samples = []
-data.domain = Domain(data)
+data = Data(file_name)
+# data = Data(None)
+# data.n = len(tumor_mat_norm)
+# data.m = len(tumor_mat_norm[0])
+# data.matrix = []
+# data.data = tumor_mat_norm
+# data.rows = []
+# data.cols = []
+# data.samples = []
+# data.domain = Domain(data)
 
 q = input('q: ')
 k = input('k: ')
