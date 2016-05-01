@@ -37,11 +37,11 @@ class Cover:
 			bb = self.min + (i+1)*self.l - i*self.l*self.p
 			self.coverset.append(Levelset(aa, bb))
 			self.coverset[self.n].i = self.n
-			print "added levelset %d" % self.coverset[self.n].i
+			# print "added levelset %d" % self.coverset[self.n].i
 			self.n = self.n + 1
 
 	def levelsets(self, domain):
-		print "computing levelsets..."
+		# print "computing levelsets..."
 		for x in domain.samples:
 			for c in self.coverset:
 				c.add(x)

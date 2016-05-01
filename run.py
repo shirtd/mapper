@@ -20,11 +20,11 @@ class Mapper:
 		self.cover.build(self.domain.min, self.domain.max)
 
 		print
-		sys.stdout.write("cover:")
-		for t in range (0, len(self.cover.coverset)):
-			sys.stdout.write("	")
-			print "[ %f, %f ]" % (self.cover.coverset[t].a, self.cover.coverset[t].b)
-		print
+		# sys.stdout.write("cover:")
+		# for t in range (0, len(self.cover.coverset)):
+		# 	sys.stdout.write("	")
+		# 	print "[ %f, %f ]" % (self.cover.coverset[t].a, self.cover.coverset[t].b)
+		# print
 
 		self.cover.levelsets(self.domain)
 		# for t in range(0, len(self.cover.coverset)):
@@ -61,8 +61,8 @@ class Mapper:
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)
-		print self.domain.min
-		print self.domain.max
+		# print self.domain.min
+		# print self.domain.max
 # --------------------------------------- #
 
 def load_data(file_name):
