@@ -14,6 +14,7 @@ class Mapper:
 		self.domain = self.data.domain
 		self.f.image(self.domain)
 		self.domain.bounds()
+		print "%d samples total" % len(self.domain.samples)
 		print "	range: [%f, %f]" % (self.domain.min, self.domain.max)
 
 		self.cover = Cover(l, p)
