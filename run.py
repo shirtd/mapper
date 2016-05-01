@@ -161,8 +161,10 @@ l_min = input('l_min: ')
 l_max = input('l_max: ')
 l_d = input('l_d: ')
 count = 0;
+print
 #mapper = Mapper(data, q, k, (l_max-l_min/2), p, l*p, "mapper.png")
 while l_min + l_d*count <= l_max:
+	print "  ------------------------------------------------------ "
 	file_out = "images/image"
 	if count+1 < 10000:
 		file_out = file_out + "0"
