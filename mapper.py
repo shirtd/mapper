@@ -81,7 +81,7 @@ class Levelset:
 						self.D[i][j] = correlation_dist(self.samples[i], self.samples[j])
 						self.D[j][i] = self.D[i][j]
 	def cluster(self):
-		print
+		# print
 		# print "CLUSTERING LEVELSET WITH %d SAMPLES" % len(self.samples)		
 		# # if len(self.samples) > 1:
 		# print "computing distance matrix..."
