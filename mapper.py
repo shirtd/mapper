@@ -86,8 +86,9 @@ class Levelset:
 		# # if len(self.samples) > 1:
 		# print "computing distance matrix..."
 		self.distance_mat()
-		print matrix(self.D)
-		print
+		matrix(self.D)
+		# print matrix(self.D)
+		# print
 		# print "clustering... "
 		self.clustering = Clustering(self)
 		return self.clustering
@@ -102,15 +103,16 @@ class Clustering:
 		self.best = None
 		for i in range(0, len(self.levelset.samples)):
 			self.clusters.append(Cluster(self, i))
-		print "	%d clusters" % len(self.clusters)
+		# print "	%d clusters" % len(self.clusters)
 		while len(self.clusters) > 2:
 			self.process()
-			print "updating matrix..."
+			# print "updating matrix..."
 			if self.update():
-				print matrix(self.D)
-				print
+				matrix(self.D)
+				# print matrix(self.D)
+				# print
 			else: break
-		print
+		# print
 	def process(self):
 		best_d = float("inf")
 		for i in range(0, len(self.clusters)):

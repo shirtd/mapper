@@ -179,25 +179,25 @@ class Complex:
 		for v in self.vertices:
 			size = self.size(v.cluster.n)
 			self.graph.vs[v.i]['size'] = size
-			print "	color of vertex %d: " % v.i
+			# print "	color of vertex %d: " % v.i
 			sys.stdout.write("	")
 			print self.graph.vs[v.i]['color']
 	def color(self, cluster):
 		levelset = cluster.clustering.levelset
 		color = self.pal.get(levelset.i)
-		print "	color of vertex %d: " % cluster.vertex.i
+		# print "	color of vertex %d: " % cluster.vertex.i
 		sys.stdout.write("	")
 		print color
 		return color
 	def size(self, n):
 		size = ((float(n) - self.min_samples)/self.max_samples)*(self.max_size - self.min_size) + self.min_size
-		print "size of vertex %d: %f pixels" % (n, size) 
+		# print "size of vertex %d: %f pixels" % (n, size) 
 		return size
 	def addClusters(self, clustering):
 		for c in clustering.clusters:
 			self.newVertex(c)
 	def newVertex(self, cluster):
-		print " adding vertex %d" % self.n
+		# print " adding vertex %d" % self.n
 		v = Vertex(cluster, self.n)
 		cluster.vertex = v
 		if cluster.n < self.min_samples:
