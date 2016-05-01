@@ -244,7 +244,7 @@ class Complex:
 		# self.complex.embed(self.graph)
 		layout = self.graph.layout_fruchterman_reingold()
 		# igraph.plot(self.graph, file_name, layout = layout, vertex_order_by='asc')
-		self.graph.__plot__(layout = layout, [500,500], spalette=self.pal, target=file_name, vertex_order_by='asc')
+		self.graph.__plot__(context=None, bbox=(0,0,600,600), palette=self.pal, layout=layout, target=file_name, vertex_order_by='asc')
 
 # class Drawing:
 # 	def __init__(self, width, height, K):
