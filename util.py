@@ -88,6 +88,8 @@ class Data:
 class Domain:
 	def __init__(self, data):
 		self.samples = []
+		print len(data.data)
+		print len(data.rows)
 		i = 0
 		for v in data.data:
 			s = Sample(v, data.rows[i])
