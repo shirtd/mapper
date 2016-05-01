@@ -137,11 +137,11 @@ class Clustering:
 		max_i = self.best.closest.i
 		self.best.merge()
 		self.best = None
-		print "	removing cluster %d" % max_i		
+		# print "	removing cluster %d" % max_i		
 		del self.clusters[max_i]
 		nn = len(self.clusters)
 		for k in range(0, nn):
-			print "	cluster %d -> %d" % (self.clusters[k].i, k)
+			# print "	cluster %d -> %d" % (self.clusters[k].i, k)
 			self.clusters[k].i = k
 		if nn > 2:
 			D = [[0. for x in range(nn)] for x in range(nn)]
@@ -190,7 +190,7 @@ class Cluster:
 				self.min_d = self.clustering.D[self.i][j]
 				self.closest = self.clustering.clusters[j]
 	def merge(self):
-		print "	merging clusters %d and %d to position %d" % (self.i, self.closest.i, self.i)
+		# print "	merging clusters %d and %d to position %d" % (self.i, self.closest.i, self.i)
 		for s in self.closest.samples:
 			self.addSample(s)
 		self.min_d = float("inf")
