@@ -196,7 +196,8 @@ print
 # 	l_d = r[5]
 while l_min + l_d*count <= l_max:
 	print "  ------------------------------------------------------ "
-	file_out = "images"+str(r_i)+"/image"
+	# file_out = "images"+str(r_i)+"/image"
+	file_out = "images/image"
 	if count+1 < 10000:
 		file_out = file_out + "0"
 		if count+1 < 1000:
