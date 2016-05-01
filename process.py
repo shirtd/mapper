@@ -56,7 +56,7 @@ def clean(headers, rootdir):
 								data.append(float(x))
 							j = j + 1
 						head = False
-					if len(data) > 0:
+					if len(data) == len(headers)-1:
 						matrix.append(data)
 	return [matrix, samples]
 
