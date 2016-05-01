@@ -99,10 +99,13 @@ def scale_col(data, scale):
 	i = 0
 	for col in data_mat_T.tolist():
 		maxx = float("-inf")
+		minn = float("inf")
 		for x in col:
+			if x < minn:
+				minn = x
 			if x > maxx:
 				maxx = x
-		data_mat_T[i] = ((data_mat_T[i]/maxx)*2 - 1) * scale
+		data_mat_T[i] = (((data_mat_T[i]-minn)/(maxx+minn)) + minn/(maxx+minn)) * scale
 		i = i + 1
 	return data_mat_T.T.tolist()
 
@@ -141,6 +144,7 @@ tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
 tumor_mat = load_data(tumor_data)
 normal_mat = load_data(normal_data)
 tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
+tumor_mat_norm_scale = scale_col(tumor_mat_norm, 1)
 savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
 # data = Data(file_name)
