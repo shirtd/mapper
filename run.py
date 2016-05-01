@@ -109,11 +109,11 @@ def scale_col(data, scale):
 # --------------------------------------- #
 
 print # data import
-# file_name = "data_new/protein/tumor/all_protein_tumor.txt"
-# tumor_data = "data_new/protein/all_tumor_protein.txt"
-# normal_data = "data_new/protein/all_normal_protein.txt"
-# file_name = "data_new/protein/normal/all_protein_normal.txt"
-file_name = "data/TCGA-BRCA-L3-S35.txt"
+file_name = "data_new/protein/tumor/all_protein_tumor.txt"
+tumor_data = "data_new/protein/all_tumor_protein.txt"
+normal_data = "data_new/protein/all_normal_protein.txt"
+file_name = "data_new/protein/normal/all_protein_normal.txt"
+# file_name = "data/TCGA-BRCA-L3-S35.txt"
 # file_name = "data/test.txt"
 # print "importing data file " + file_name +"..."
 # data = Data(file_name)
@@ -136,23 +136,23 @@ p = 1/7.	# cover-set interval percent overlap
 
 # mapper = Mapper(file_name, q, k, l, p, l*p)
 
-# tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
+tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
 
-# tumor_mat = load_data(tumor_data)
-# normal_mat = load_data(normal_data)
-# tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
-# savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
+tumor_mat = load_data(tumor_data)
+normal_mat = load_data(normal_data)
+tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
+savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
-data = Data(file_name)
-# data = Data(None)
-# data.n = len(tumor_mat_norm)
-# data.m = len(tumor_mat_norm[0])
-# data.matrix = []
-# data.data = tumor_mat_norm
-# data.rows = []
-# data.cols = []
-# data.samples = []
-# data.domain = Domain(data)
+# data = Data(file_name)
+data = Data(None)
+data.n = len(tumor_mat_norm)
+data.m = len(tumor_mat_norm[0])
+data.matrix = []
+data.data = tumor_mat_norm
+data.rows = []
+data.cols = []
+data.samples = []
+data.domain = Domain(data)
 
 q = input('q: ')
 k = input('k: ')
