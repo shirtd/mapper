@@ -1,3 +1,3 @@
 #!/bin/bash
 python run.py
-ffmpeg -f image2 -r 1/5 -i image%05d.png -vcodec mpeg4 -y movie.mp4
+ffmpeg -f image2 -r 5 -i images/image%05d.png -vcodec mpeg4 -y movie.mp4

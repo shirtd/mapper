@@ -180,13 +180,13 @@ class Complex:
 			size = self.size(v.cluster.n)
 			self.graph.vs[v.i]['size'] = size
 			# print "	color of vertex %d: " % v.i
-			sys.stdout.write("	")
+			# sys.stdout.write("	")
 			# print self.graph.vs[v.i]['color']
 	def color(self, cluster):
 		levelset = cluster.clustering.levelset
 		color = self.pal.get(levelset.i)
 		# print "	color of vertex %d: " % cluster.vertex.i
-		sys.stdout.write("	")
+		# sys.stdout.write("	")
 		# print color
 		return color
 	def size(self, n):
@@ -238,13 +238,30 @@ class Complex:
 		maxdelta = self.n	# maximum distance to move a vertex in an iteration (default is the number of vertices)
 		coolexp = 1.5	# cooling component of the simulated annealing (default 1.5)
 		repulserad = self.n**3.	# radius at which vertex-vertex repulsion cancels out attraction of adjacent vertices (default len(vertices)^3)
-		seed = None 	# if None, uses a random starting layout for the algorithm. If a matrix (list of lists) uses the given matrix as the starting position
+		#seed = None 	# if None, uses a random starting layout for the algorithm. If a matrix (list of lists) uses the given matrix as the starting position
 		# print self.weights
 		# self.graph.layout_fruchterman_reingold(self.weights, maxiter, maxdelta, area, coolexp, repulserad,minx, maxx, miny, maxy, 0, 0, seed, self.dim)
 		# self.complex.embed(self.graph)
-		layout = self.graph.layout_fruchterman_reingold()
-		# igraph.plot(self.graph, file_name, layout = layout, vertex_order_by='asc')
-		self.graph.__plot__(context=None, bbox=(0,0,600,600), palette=self.pal, layout=layout, target=file_name, vertex_order_by='asc')
+		s = []
+		height = 600
+		width = 600
+		d_x = (width - 100)/self.l
+		pos_x = 50		
+		pos_y = 50
+		for l in self.cover.coverset:
+			if (len(l.clustering.clusters) == 0):
+				pos_y = height/2
+				s.append([pos_x, height/2])
+			else:
+				d_y = (height - 100)/len(l.clustering.clusters)
+				for c in l.clustering.clusters:
+					s.append([pos_x, pos_y])
+					pos_y = pos_y + d_y
+			pos_x = pos_x + d_x
+			pos_y = 50
+		layout = self.graph.layout_fruchterman_reingold(seed=s)
+		igraph.plot(self.graph, file_name, layout = layout)
+		# self.graph.__plot__(context=None, bbox=(0,0,600,600), palette=self.pal, layout=layout, target=file_name, vertex_order_by='asc')
 
 # class Drawing:
 # 	def __init__(self, width, height, K):

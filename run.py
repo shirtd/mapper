@@ -158,27 +158,44 @@ data.cols = []
 data.samples = []
 data.domain = Domain(data)
 
-q = input('q: ')
-k = input('k: ')
-p = input('p: ')
-l_min = input('l_min: ')
-l_max = input('l_max: ')
-l_d = input('l_d: ')
-count = 0;
+run = [ [2,4,0.1,25000,5000000,25000],
+	[2,4,0.2,25000,5000000,25000],
+	[2,4,0.25,25000,5000000,25000], 
+	[2,4,0.3,25000,5000000,25000],
+	[2,4,0.4,25000,5000000,25000]]
+
+
+#q = input('q: ')
+#k = input('k: ')
+#p = input('p: ')
+#l_min = input('l_min: ')
+#l_max = input('l_max: ')
+#l_d = input('l_d: ')
+count = 0
+r_i = 0
 print
+for r in run:
+	q = r[0]
+	k = r[1]
+	p = r[2]
+	l_min = r[3]
+	l_max = r[4]
+	l_d = r[5]
 #mapper = Mapper(data, q, k, (l_max-l_min/2), p, l*p, "mapper.png")
-while l_min + l_d*count <= l_max:
-	print "  ------------------------------------------------------ "
-	file_out = "images/image"
-	if count+1 < 10000:
-		file_out = file_out + "0"
-		if count+1 < 1000:
+	while l_min + l_d*count <= l_max:
+		print "  ------------------------------------------------------ "
+		file_out = "images"+str(r_i)+"/image"
+		if count+1 < 10000:
 			file_out = file_out + "0"
-			if count+1 < 100:
+			if count+1 < 1000:
 				file_out = file_out + "0"
-				if count+1 < 10:
+				if count+1 < 100:
 					file_out = file_out + "0"
-	file_out = file_out + str(count+1) + ".png"
-	print file_out
-	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
-	count = count + 1
+					if count+1 < 10:
+						file_out = file_out + "0"
+		file_out = file_out + str(count+1) + ".png"
+		print file_out
+		Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
+		count = count + 1
+	r_i = r_i + 1
+	count = 0
