@@ -90,8 +90,7 @@ class Domain:
 		self.samples = []
 		i = 0
 		for v in data.data:
-			# s = Sample(v, data.rows[i])
-			s = Sample(v, "")
+			s = Sample(v, data.rows[i])
 			self.samples.append(s)
 			i = i + 1
 		self.min = None
