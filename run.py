@@ -80,6 +80,15 @@ def load_data(file_name):
 			i = i + 1
 	return data
 
+def load_list(file_name):
+	file = open(file_name)
+	lst = []
+	with file as f:
+		i = 0
+		for line in f:
+			lst.append(line)
+	return lst
+
 def normalize_healthy(normal, tumor):
 	normal_mat = matrix(normal)
 	tumor_mat = matrix(tumor)
@@ -140,10 +149,14 @@ p = 1/7.	# cover-set interval percent overlap
 # mapper = Mapper(file_name, q, k, l, p, l*p)
 
 tumor_norm_output = "data_new/protein/tumor_protein_normalized.txt"
+tumor_barcodes = "data_new/protein/tumor_barcodes.txt"
+header_file = "data_new/protein/headers_clean.txt"
 
+headers = load_list(header_file)
 tumor_mat = load_data(tumor_data)
 normal_mat = load_data(normal_data)
 tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
+tumor_samples = load_list(tumor_barcodes)
 tumor_mat_norm_scale = scale_col(tumor_mat_norm, 1)
 savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
@@ -153,49 +166,48 @@ data.n = len(tumor_mat_norm)
 data.m = len(tumor_mat_norm[0])
 data.matrix = []
 data.data = tumor_mat_norm
-data.rows = []
-data.cols = []
+data.rows = tumor_barcodes
+data.cols = headers
 data.samples = []
 data.domain = Domain(data)
 
-run = [ [2,4,0.1,25000,5000000,25000],
-	[2,4,0.2,25000,5000000,25000],
-	[2,4,0.25,25000,5000000,25000], 
-	[2,4,0.3,25000,5000000,25000],
-	[2,4,0.4,25000,5000000,25000]]
+# run = [ [2,4,0.1,25000,5000000,25000],
+# 	[2,4,0.2,25000,5000000,25000],
+# 	[2,4,0.25,25000,5000000,25000], 
+# 	[2,4,0.3,25000,5000000,25000],
+# 	[2,4,0.4,25000,5000000,25000]]
 
 
-#q = input('q: ')
-#k = input('k: ')
-#p = input('p: ')
-#l_min = input('l_min: ')
-#l_max = input('l_max: ')
-#l_d = input('l_d: ')
+q = input('q: ')
+k = input('k: ')
+p = input('p: ')
+l_min = input('l_min: ')
+l_max = input('l_max: ')
+l_d = input('l_d: ')
 count = 0
 r_i = 0
 print
-for r in run:
-	q = r[0]
-	k = r[1]
-	p = r[2]
-	l_min = r[3]
-	l_max = r[4]
-	l_d = r[5]
-#mapper = Mapper(data, q, k, (l_max-l_min/2), p, l*p, "mapper.png")
-	while l_min + l_d*count <= l_max:
-		print "  ------------------------------------------------------ "
-		file_out = "images"+str(r_i)+"/image"
-		if count+1 < 10000:
+# for r in run:
+# 	q = r[0]
+# 	k = r[1]
+# 	p = r[2]
+# 	l_min = r[3]
+# 	l_max = r[4]
+# 	l_d = r[5]
+while l_min + l_d*count <= l_max:
+	print "  ------------------------------------------------------ "
+	file_out = "images"+str(r_i)+"/image"
+	if count+1 < 10000:
+		file_out = file_out + "0"
+		if count+1 < 1000:
 			file_out = file_out + "0"
-			if count+1 < 1000:
+			if count+1 < 100:
 				file_out = file_out + "0"
-				if count+1 < 100:
+				if count+1 < 10:
 					file_out = file_out + "0"
-					if count+1 < 10:
-						file_out = file_out + "0"
-		file_out = file_out + str(count+1) + ".png"
-		print file_out
-		Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
-		count = count + 1
-	r_i = r_i + 1
-	count = 0
+	file_out = file_out + str(count+1) + ".png"
+	print file_out
+	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
+	count = count + 1
+	# r_i = r_i + 1
+	# count = 0
