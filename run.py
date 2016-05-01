@@ -165,6 +165,7 @@ tumor_mat = load_data(tumor_data)
 normal_mat = load_data(normal_data)
 tumor_mat_norm = normalize_healthy(normal_mat, tumor_mat)
 tumor_samples = load_list(tumor_barcodes)
+print len(tumor_samples)
 tumor_mat_norm_scale = scale_col(tumor_mat_norm, 1)
 savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
