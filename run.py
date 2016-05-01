@@ -7,7 +7,7 @@ from numpy import *
 
 class Mapper:
 	# def __init__(self, file_name, q, k, l, p, ll, file_out):
-	def __init__(self, data, q, k, l, p, ll, file_out):
+	def __init__(self, data, q, k, l, p, ll, file_out, file_transcript):
 		self.f = Filter(q, k)
 		self.data = data
 		# self.data = Data(file_name)
@@ -69,7 +69,7 @@ class Mapper:
 			for sample in v.cluster.samples:
 				transcript[i].append(sample.label)
 			i = i + 1
-		savetxt("transcript_" + file_out, transcript, delimiter='\t', fmt='%s')
+		savetxt(file_transcript, transcript, delimiter='\t', fmt='%s')
 		# print self.domain.min
 		# print self.domain.max
 # --------------------------------------- #
@@ -206,6 +206,7 @@ while l_min + l_d*count <= l_max:
 	print "  ------------------------------------------------------ "
 	# file_out = "images"+str(r_i)+"/image"
 	file_out = "images/image"
+	file_transcript = "transcripts/transcript"+count
 	if count+1 < 10000:
 		file_out = file_out + "0"
 		if count+1 < 1000:
@@ -216,7 +217,7 @@ while l_min + l_d*count <= l_max:
 					file_out = file_out + "0"
 	file_out = file_out + str(count+1) + ".png"
 	print file_out
-	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out)
+	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript)
 	count = count + 1
 	# r_i = r_i + 1
 	# count = 0
