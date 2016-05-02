@@ -208,6 +208,7 @@ class Complex:
 		self.vertices.append(v)
 		self.graph.add_vertex()		
 		self.graph.vs[self.n]['color'] = self.color(cluster)
+		self.graph.vs[self.n]['label'] = "class"+str(self.n)+"\nlevelset = ["+str(cluster.clustering.levelset.a)+", "+str(cluster.clustering.levelset.a)+"]"
 		self.n = self.n + 1
 		new_row = [None]
 		for r in self.edge_mat:
