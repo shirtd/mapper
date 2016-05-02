@@ -263,6 +263,8 @@ class Complex:
 			pos_y = 50
 		layout = self.graph.layout_fruchterman_reingold(seed=s)
 		igraph.plot(self.graph, file_name, layout = layout)
+		print self.pal.get(0)
+		print self.pal.get(self.l)
 		# self.graph.__plot__(context=None, bbox=(0,0,600,600), palette=self.pal, layout=layout, target=file_name, vertex_order_by='asc')
 
 # class Drawing:
