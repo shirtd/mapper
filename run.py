@@ -62,14 +62,15 @@ class Mapper:
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)
+		file = open(file_transcript, 'w')
 		transcript = []
 		i = 0
 		for v in self.complex.vertices:
-			transcript.append([])
 			for sample in v.cluster.samples:
-				transcript[i].append(sample.label)
+				if len(sample.clusters) == 1:
+					file.write("class"+str(i)+"\t"+sample[:11]+"\n")
+				# transcript[i].append(sample.label)
 			i = i + 1
-		savetxt(file_transcript, transcript, delimiter='\t', fmt='%s')
 		# print self.domain.min
 		# print self.domain.max
 # --------------------------------------- #
