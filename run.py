@@ -7,7 +7,7 @@ from numpy import *
 
 class Mapper:
 	# def __init__(self, file_name, q, k, l, p, ll, file_out):
-	def __init__(self, data, q, k, l, p, ll, file_out, file_transcript):
+	def __init__(self, data, q, k, l, p, ll, file_out, file_transcript, file_parameters):
 		self.f = Filter(q, k)
 		self.data = data
 		# self.data = Data(file_name)
@@ -74,13 +74,13 @@ class Mapper:
 				# transcript[i].append(sample.label)
 		fle.close()
 		
-		file = open(file_parameters, 'w')
-		fle.write("q = "+str(q)+"\n")
-		fle.write("k = "+str(k)+"\n")
-		fle.write("l = "+str(p)+"\n")
-		fle.write("p = "+str(p)+"\n")
-		file.write(str(len(self.cover.coversets))+" levelsets")
-		fle.close()
+		fie = open(file_parameters, 'w')
+		fie.write("q = "+str(q)+"\n")
+		fie.write("k = "+str(k)+"\n")
+		fie.write("l = "+str(p)+"\n")
+		fie.write("p = "+str(p)+"\n")
+		fie.write(str(len(self.cover.coversets))+" levelsets")
+		fie.close()
 		# classify samples by edge (better for larger overlap)
 		# parameter transcript includes parameters, number of levelsets, and levelsets corresponding to each class (vertex) 
 
@@ -233,7 +233,7 @@ while l_min + l_d*count <= l_max:
 	file_transcript = file_transcript + str(count+1) + ".txt"
 	file_parameters = file_parameters + str(count+1) + ".txt"
 	print file_out
-	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript)
+	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript, file_parameters)
 	count = count + 1
 	# r_i = r_i + 1
 	# count = 0
