@@ -68,6 +68,7 @@ class Mapper:
 		i = 0
 		for v in self.complex.vertices:
 			for sample in v.cluster.samples:
+				print len(sample.clusters)
 				if len(sample.clusters) == 1:
 					print "class"+str(i)+"\t"+sample.label[:12]
 					fle.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
