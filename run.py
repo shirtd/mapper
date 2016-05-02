@@ -79,7 +79,7 @@ class Mapper:
 		fie.write("k = "+str(k)+"\n")
 		fie.write("l = "+str(p)+"\n")
 		fie.write("p = "+str(p)+"\n")
-		fie.write(str(len(self.cover.coversets))+" levelsets")
+		fie.write(str(len(self.cover.coverset))+" levelsets")
 		fie.close()
 		# classify samples by edge (better for larger overlap)
 		# parameter transcript includes parameters, number of levelsets, and levelsets corresponding to each class (vertex) 
