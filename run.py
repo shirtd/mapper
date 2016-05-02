@@ -75,8 +75,10 @@ class Mapper:
 				# transcript[i].append(sample.label)
 			i = i + 1
 		fle.close()
-		# print self.domain.min
-		# print self.domain.max
+		
+		# classify samples by edge (better for larger overlap)
+		# parameter transcript includes parameters, number of levelsets, and levelsets corresponding to each class (vertex) 
+
 # --------------------------------------- #
 
 def load_data(file_name):
