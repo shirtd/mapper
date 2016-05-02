@@ -74,6 +74,13 @@ class Mapper:
 				# transcript[i].append(sample.label)
 		fle.close()
 		
+		file = open(file_parameters, 'w')
+		fle.write("q = "+str(q)+"\n")
+		fle.write("k = "+str(k)+"\n")
+		fle.write("l = "+str(p)+"\n")
+		fle.write("p = "+str(p)+"\n")
+		file.write(str(len(self.cover.coversets))+" levelsets")
+		fle.close()
 		# classify samples by edge (better for larger overlap)
 		# parameter transcript includes parameters, number of levelsets, and levelsets corresponding to each class (vertex) 
 
@@ -213,6 +220,7 @@ while l_min + l_d*count <= l_max:
 	# file_out = "images"+str(r_i)+"/image"
 	file_out = "images/image"
 	file_transcript = "transcripts/transcript"
+	file_parameters = "parameters/parameters"
 	if count+1 < 10000:
 		file_out = file_out + "0"
 		if count+1 < 1000:
@@ -223,6 +231,7 @@ while l_min + l_d*count <= l_max:
 					file_out = file_out + "0"
 	file_out = file_out + str(count+1) + ".png"
 	file_transcript = file_transcript + str(count+1) + ".txt"
+	file_parameters = file_parameters + str(count+1) + ".txt"
 	print file_out
 	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript)
 	count = count + 1
