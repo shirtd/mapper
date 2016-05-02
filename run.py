@@ -62,15 +62,15 @@ class Mapper:
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)
-		file = open(file_transcript, 'w')
+		fle = open(file_transcript, 'w')
 		i = 0
 		for v in self.complex.vertices:
 			for sample in v.cluster.samples:
 				if len(sample.clusters) == 1:
-					file.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
+					fle.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
 				# transcript[i].append(sample.label)
 			i = i + 1
-		file.close()
+		fle.close()
 		# print self.domain.min
 		# print self.domain.max
 # --------------------------------------- #
@@ -207,7 +207,7 @@ while l_min + l_d*count <= l_max:
 	print "  ------------------------------------------------------ "
 	# file_out = "images"+str(r_i)+"/image"
 	file_out = "images/image"
-	file_transcript = "transcripts/transcript"+str(count)+".txt"
+	file_transcript = "transcripts/transcript"
 	if count+1 < 10000:
 		file_out = file_out + "0"
 		if count+1 < 1000:
@@ -217,6 +217,7 @@ while l_min + l_d*count <= l_max:
 				if count+1 < 10:
 					file_out = file_out + "0"
 	file_out = file_out + str(count+1) + ".png"
+	file_transcript = file_transcript + str(count+1) + ".txt"
 	print file_out
 	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript)
 	count = count + 1
