@@ -174,15 +174,7 @@ tumor_mat_norm_scale = scale_col(tumor_mat_norm, 1)
 savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 
 # data = Data(file_name)
-data = Data(None)
-data.n = len(tumor_mat_norm)
-data.m = len(tumor_mat_norm[0])
-data.matrix = []
-data.data = tumor_mat_norm
-data.rows = tumor_samples
-data.cols = headers
-data.samples = []
-data.domain = Domain(data)
+
 
 # run = [ [2,4,0.1,25000,5000000,25000],
 # 	[2,4,0.2,25000,5000000,25000],
@@ -208,6 +200,15 @@ print
 # 	l_max = r[4]
 # 	l_d = r[5]
 while l_min + l_d*count <= l_max:
+	data = Data(None)
+	data.n = len(tumor_mat_norm)
+	data.m = len(tumor_mat_norm[0])
+	data.matrix = []
+	data.data = tumor_mat_norm
+	data.rows = tumor_samples
+	data.cols = headers
+	data.samples = []
+	data.domain = Domain(data)
 	print "  ------------------------------------------------------ "
 	# file_out = "images"+str(r_i)+"/image"
 	file_out = "images/image"
