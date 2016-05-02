@@ -68,7 +68,7 @@ class Mapper:
 		for v in self.complex.vertices:
 			for sample in v.cluster.samples:
 				if len(sample.clusters) == 1:
-					file.write("class"+str(i)+"\t"+sample.label[:11]+"\n")
+					file.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
 				# transcript[i].append(sample.label)
 			i = i + 1
 		# print self.domain.min
