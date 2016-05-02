@@ -63,7 +63,6 @@ class Mapper:
 
 		self.complex.spring_embedding(file_out)
 		file = open(file_transcript, 'w')
-		transcript = []
 		i = 0
 		for v in self.complex.vertices:
 			for sample in v.cluster.samples:
@@ -71,6 +70,7 @@ class Mapper:
 					file.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
 				# transcript[i].append(sample.label)
 			i = i + 1
+		file.close()
 		# print self.domain.min
 		# print self.domain.max
 # --------------------------------------- #
