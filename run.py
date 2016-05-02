@@ -62,11 +62,14 @@ class Mapper:
 							self.complex.newEdge(c.vertex, t.vertex)
 
 		self.complex.spring_embedding(file_out)
+
+		print file_transcript
 		fle = open(file_transcript, 'w')
 		i = 0
 		for v in self.complex.vertices:
 			for sample in v.cluster.samples:
 				if len(sample.clusters) == 1:
+					print "class"+str(i)+"\t"+sample.label[:12]
 					fle.write("class"+str(i)+"\t"+sample.label[:12]+"\n")
 				# transcript[i].append(sample.label)
 			i = i + 1
