@@ -190,12 +190,61 @@ savetxt(tumor_norm_output, tumor_mat_norm, delimiter='\t')
 # 	[2,4,0.4,25000,5000000,25000]]
 
 
+# q = input('q: ')
+# k = input('k: ')
+# p = input('p: ')
+# l_min = input('l_min: ')
+# l_max = input('l_max: ')
+# l_d = input('l_d: ')
+# count = 0
+# r_i = 0
+
+# print
+# # for r in run:
+# # 	q = r[0]
+# # 	k = r[1]
+# # 	p = r[2]
+# # 	l_min = r[3]
+# # 	l_max = r[4]
+# # 	l_d = r[5]
+# while l_min + l_d*count <= l_max:
+# 	data = Data(None)
+# 	data.n = len(tumor_mat_norm)
+# 	data.m = len(tumor_mat_norm[0])
+# 	data.matrix = []
+# 	data.data = tumor_mat_norm
+# 	data.rows = tumor_samples
+# 	data.cols = headers
+# 	data.samples = []
+# 	data.domain = Domain(data)
+# 	print "  ------------------------------------------------------ "
+# 	# file_out = "images"+str(r_i)+"/image"
+# 	file_out = "images/image"
+# 	file_transcript = "transcripts/transcript"
+# 	file_parameters = "parameters/parameters"
+# 	if count+1 < 10000:
+# 		file_out = file_out + "0"
+# 		if count+1 < 1000:
+# 			file_out = file_out + "0"
+# 			if count+1 < 100:
+# 				file_out = file_out + "0"
+# 				if count+1 < 10:
+# 					file_out = file_out + "0"
+# 	file_out = file_out + str(count+1) + ".png"
+# 	file_transcript = file_transcript + str(count+1) + ".txt"
+# 	file_parameters = file_parameters + str(count+1) + ".txt"
+# 	print file_out
+# 	Mapper(data, q, k, (l_min+l_d*count), p, (l_min+l_d*count)*p, file_out, file_transcript, file_parameters)
+# 	count = count + 1
+# 	# r_i = r_i + 1
+# 	# count = 0
+
 q = input('q: ')
 k = input('k: ')
-p = input('p: ')
-l_min = input('l_min: ')
-l_max = input('l_max: ')
-l_d = input('l_d: ')
+l = input('l: ')
+p_min = input('p_min: ')
+p_max = input('p_max: ')
+p_d = input('p_d: ')
 count = 0
 r_i = 0
 print
@@ -206,7 +255,7 @@ print
 # 	l_min = r[3]
 # 	l_max = r[4]
 # 	l_d = r[5]
-while l_min + l_d*count <= l_max:
+while p_min + p_d*count <= p_max:
 	data = Data(None)
 	data.n = len(tumor_mat_norm)
 	data.m = len(tumor_mat_norm[0])
@@ -233,7 +282,7 @@ while l_min + l_d*count <= l_max:
 	file_transcript = file_transcript + str(count+1) + ".txt"
 	file_parameters = file_parameters + str(count+1) + ".txt"
 	print file_out
-	Mapper(data, q, k, (l_min+l_d*count), p, l*p, file_out, file_transcript, file_parameters)
+	Mapper(data, q, k, l, (p_min+p_d*count), l*(p_min+p_d*count), file_out, file_transcript, file_parameters)
 	count = count + 1
 	# r_i = r_i + 1
 	# count = 0
